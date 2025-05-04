@@ -29,12 +29,13 @@ jobs:
             pyinstaller --noconfirm --onefile --windowed ^
                 --icon "icon.ico" ^
                 --add-data "icon.ico;." ^
+                --name WashMoney ^
                 main.py
       - name: Upload executable artifact
         uses: actions/upload-artifact@v4
         with:
           name: washmoney-exe
-          path: dist/main.exe
+          path: dist/WashMoney.exe
 
   release:
     needs: build
@@ -44,11 +45,11 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: washmoney-exe
+          name: WashMoney-exe
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: WashMoney.exe
+          files: dist/WashMoney.exe
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
