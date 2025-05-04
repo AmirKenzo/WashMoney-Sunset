@@ -24,11 +24,7 @@ jobs:
           pip install pyinstaller
 
       - name: Build executable with PyInstaller
-        run: |
-          pyinstaller --noconfirm --onefile --windowed ^
-            --icon "icon.ico" ^
-            --add-data "icon.ico;." ^
-            main.py
+        run: pyinstaller --noconfirm --onefile --windowed --icon "icon.ico" --add-data "icon.ico;." main.py
 
       - name: Upload executable artifact
         uses: actions/upload-artifact@v4
